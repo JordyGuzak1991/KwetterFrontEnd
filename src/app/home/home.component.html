@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-lg-8">
+    <form class="form" (submit)="postKweet()">
+      <h1>What's happening?</h1>
+      <div class="form-group">
+        <label for="kweet_message">Message</label>
+        <textarea id="kweet_message" maxlength="140" class="form-control" name="kweetMessage"
+                  [(ngModel)]="kweetMessage"></textarea>
+        <p>You have {{140 - kweetMessage.length}} characters left.</p>
+        <button type="submit" id="post_btn" style="float:right; margin-top: 5px;">Post</button>
+      </div>
+    </form>
+    <h3>Timeline</h3>
+    <div *ngFor="let item of timeline">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span>{{item.username}}</span>
+          <span style="float: right;">{{item.postDate | date: 'dd/MM/yyyy'}}</span>
+        </div>
+        <div class="panel-body">
+          <p>{{item.message}}</p>
+        </div>
+      </div>
+    </div>
+    <div [hidden]="!timeline">
+        <p>No kweets to display...</p>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div id="latest_kweet">
+      <h2>Your tweets <strong>0</strong></h2>
+      <p><strong>{{user.username}}&nbsp;</strong>blabla</p>
+    </div>
+  </div>
+</div>
